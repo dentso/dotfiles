@@ -1,0 +1,17 @@
+# disable=2016
+# disable=2153
+# disable=SC2155
+# disable=SC2002
+disable=SC2154
+disable=SC2086
+disable=SC2250
+disable=SC2155
+disable=SC2012
+disable=SC2162
+disable=SC2034
+disable=SC2002
+disable=SC2164
+disable=SC1073
+disable=SC2035
+disable=SC2046
+disable=SC2116

@@ -1,1 +1,1 @@
-# dotfiles
+# dotfiles for linux and darwin

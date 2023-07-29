@@ -1,0 +1,165 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
+  hooks:
+  - id: check-added-large-files
+  - id: check-merge-conflict
+  - id: check-vcs-permalinks
+  - id: forbid-new-submodules
+  #  - id: no-commit-to-branch
+
+  # Common errors
+  - id: end-of-file-fixer
+  - id: trailing-whitespace
+    args: [--markdown-linebreak-ext=md]
+    exclude: CHANGELOG.md
+  - id: mixed-line-ending
+  - id: check-yaml
+  - id: check-json
+  - id: pretty-format-json
+  - id: check-merge-conflict
+  - id: check-executables-have-shebangs
+
+  # Cross platform
+  - id: check-case-conflict
+  - id: mixed-line-ending
+    args: [--fix=lf]
+
+  # Security
+  - id: detect-aws-credentials
+    args: ['--allow-missing-credentials']
+  - id: detect-private-key
+
+- repo: https://github.com/adrienverge/yamllint.git
+  rev: v1.32.0
+  hooks:
+  - id: yamllint
+    args: ['-d {extends: relaxed, rules: {line-length: disable}}', '-s']
+
+- repo: https://github.com/jumanjihouse/pre-commit-hooks
+  rev: 3.0.0
+  hooks:
+  # - id: shfmt
+  #   args:
+  #     - -i
+  #     - "2"
+  - id: shellcheck
+
+# JSON5 Linter
+- repo: https://github.com/pre-commit/mirrors-prettier
+  rev: v3.0.0-alpha.9-for-vscode
+  hooks:
+  - id: prettier
+    # https://prettier.io/docs/en/options.html#parser
+    files: '.json5$'
+
+- repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
+  rev: v9.5.0
+  hooks:
+  - id: commitlint
+    stages: [commit-msg]
+    additional_dependencies: ['@commitlint/config-conventional']
+
+##############################################################################
+# Go Linter
+
+- repo: https://github.com/dnephin/pre-commit-golang
+  rev: v0.4.0
+  hooks:
+  - id: go-vet
+    exclude: 'vendor'
+  - id: go-lint
+  - id: go-critic
+    exclude: 'vendor'
+  - id: go-fmt
+  - id: go-imports
+    exclude: 'vendor'
+  - id: no-go-testing
+  - id: golangci-lint
+  # - id: go-unit-tests
+  # - id: validate-toml
+
+##############################################################################
+
+# GIthub Action Linter
+# - repo: https://github.com/rhysd/actionlint
+#   rev: v1.6.24
+#   - id: actionlint
+#     name: Lint GitHub Actions workflow files
+#     description: Runs actionlint to lint GitHub Actions workflow files
+#     language: system
+#     types: ["yaml"]
+#     files: "^.github/workflows/"
+#     entry: actionlint
+#   - id: actionlint-docker
+#     name: Lint GitHub Actions workflow file Docker
+#     description: Runs actionlint Docker image to lint GitHub Actions workflow files
+#     language: docker_image
+#     types: ["yaml"]
+#     files: "^.github/workflows/"
+#     entry: rhysd/actionlint:1.6.24
+
+##############################################################################
+
+# Python Linter
+# -   repo: https://github.com/psf/black
+#     rev: 20.8b1
+#     hooks:
+#     -   id: black
+# -   repo: https://github.com/asottile/blacken-docs
+#     rev: v1.8.0
+#     hooks:
+#     -   id: blacken-docs
+#         additional_dependencies: [black==20.8b1]
+# -   repo: https://github.com/asottile/seed-isort-config
+#     rev: v2.2.0
+#     hooks:
+#     -   id: seed-isort-config
+# -   repo: https://github.com/pre-commit/mirrors-isort
+#     rev: v5.4.2
+#     hooks:
+#     -   id: isort
+# -   repo: https://github.com/pre-commit/mirrors-mypy
+#     rev: v0.782
+#     hooks:
+#     -   id: mypy
+#         args: [--ignore-missing-imports]
+# - repo: https://github.com/charliermarsh/ruff-pre-commit
+#   # Ruff version.
+#   rev: "v0.0.267"
+#   hooks:
+#     - id: ruff
+
+##############################################################################
+
+# Dockerfile linter
+# - repo: https://github.com/hadolint/hadolint
+#   rev: v2.12.1-beta
+#   hooks:
+#   - id: hadolint
+#     args: [
+#       '--ignore', 'DL3027', # Do not use apt
+#       '--ignore', 'DL3007', # Using latest
+#       '--ignore', 'DL4006', # Not related to alpine
+#       '--ignore', 'SC1091', # Useless check
+#       '--ignore', 'SC2015', # Useless check
+#       '--ignore', 'SC3037', # Not related to alpine
+#       '--ignore', 'DL3013', # Pin versions in pip
+#     ]
+
+##############################################################################
+
+# Terraform Linter
+# - repo: https://github.com/terraform-docs/terraform-docs
+#   rev: "v0.16.0"
+#   hooks:
+#     - id: terraform-docs-go
+#       args: ["markdown", "table", "--output-file", "README.md", "./"]
+# - repo: https://github.com/antonbabenko/pre-commit-terraform
+#   rev: "v1.74.1"
+#   hooks:
+#     - id: terraform_fmt
+#     - id: terraform_tflint
+#     - id: terraform_validate
+#     - id: terraform_tfsec
+

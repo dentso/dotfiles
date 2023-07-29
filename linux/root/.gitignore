@@ -1,0 +1,30 @@
+
+# general
+tmp
+*.xlsx
+*.tgz
+*~
+
+# macosx
+.vscode
+.DS*
+
+# secrets
+.env
+
+# archives
+*.zip
+*.tgz
+
+# python
+*.pyc
+_*
+.mypy*
+
+# terraform
+*.tfstate
+*.tfvars
+.terraform.lock*
+.terraform
+*.tfstate.backup
+
